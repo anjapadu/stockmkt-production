@@ -1,48 +1,41 @@
 version: "3.1"
 
 services:
-  # api_auth:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker_files/Dockerfile.auth
-  #   ports:
-  #     - "5004:5000"
-  #   volumes:
-  #     - "./api-auth:/usr/src/api-auth"
-  #   environment:
-  #     ENV: development
-  #     AWS_REGION: "us-east-1"
-  #     AWS_KEY_ID: "AKIA3N2FDQYDHYQVWEHU"
-  #     AWS_KEY_SECRET: "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"
-  #     CLIENT_ID: "i78kjordr8ijhnnhf92sm5p24"
-  #     USER_POOL_ID: "us-east-1_SlBDp9xy2"
-  #     OAUTH_URL: "https://auth.hackedu.dev"
-  #     DB_HOST: "db_hacker"
-  #     DB_NAME: "hacker"
-  #     DB_PASS: "08ewd2laasdj1d13rDagW"
-  #     DB_PORT: "5432"
-  #     DB_USER: "hackedu"
-  # api_hacker:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker_files/Dockerfile.hacker
-  #   ports:
-  #     - "5003:5000"
-  #   volumes:
-  #     - "./api-hacker:/usr/src/api-hacker"
-  #   environment:
-  #     API_HACKER_URL: "http://api_hacker:5000"
-  #     API_TEST_ENGINE_URL: "http://api_test_engine:5000"
+  front:
+    build:
+      context: .
+      dockerfile: ./StockMarket/Dockerfile
+    ports: 
+      - "8085:8085"
+    environment:
+      PORT: 8085
+  back:
+    build:
+      context: .
+      dockerfile: ./StockMarketBack/Dockerfile
+    ports:
+      - "5015:5015"
+      - "5020:5020"
+    environment:
+      DB_USER: root
+      DB_PASS: 08ewd2laasdj1d13rDagW
+      DB_NAME: stockmkt
+      DB_HOST: db_stockmkt
+      DB_PORT: 5432
+      APP_PORT: 5015
+      SOCKET_PORT: 5020
+    depends_on:
+      - db_stockmkt
   db_stockmkt:
     build:
       context: .
       dockerfile: ./StockMarketBack/db.Dockerfile
     ports:
-      - "5432:5432"
-    restart: always 
+      - "5430:5432"
+    restart: always
     environment:
       POSTGRES_DB: stockmkt
-      POSTGRES_USER: gustavo
+      POSTGRES_USER: root
       POSTGRES_PASSWORD: 08ewd2laasdj1d13rDagW
     volumes:
       - /var/lib/postgresql/data/

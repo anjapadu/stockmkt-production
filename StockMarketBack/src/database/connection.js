@@ -2,11 +2,11 @@ import { Sequelize } from 'sequelize';
 require('dotenv').config();
 
 const databaseConfig = {
-    "username": "",
-    "password": "",
-    "database": "stockmkt",
-    "host": "localhost",
-    "port": "5445",
+    "username": process.env.DB_USER,
+    "password": process.env.DB_PASS,
+    "database": process.env.DB_NAME,
+    "host": process.env.DB_HOST,
+    "port": process.env.DB_PORT,
     "dialect": "postgres"
 }
 console.log({ databaseConfig });
