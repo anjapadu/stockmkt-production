@@ -37,5 +37,3 @@ services:
       POSTGRES_DB: stockmkt
       POSTGRES_USER: root
       POSTGRES_PASSWORD: 08ewd2laasdj1d13rDagW
-    volumes:
-      - /var/lib/postgresql/data/
