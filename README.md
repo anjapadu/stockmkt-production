@@ -6,7 +6,7 @@
 - Npm
 
 ### INIT
-Para levantar todo en local basta con ejecutar `docker-compose up`
+Para levantar todo en local basta con ejecutar `docker-compose up` e ir a localhost:8085
 
 ### Base de datos
 - Postgres
