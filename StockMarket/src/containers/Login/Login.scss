@@ -1,0 +1,31 @@
+._login_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+  a:hover {
+    color: #371E9E;
+  }
+  a {
+    color: #FFF;
+  }
+  ._login_form {
+    position: relative;
+    background: rgba(0, 0, 0, 0.4);
+    @include mobile {
+      width: 95vw;
+    }
+    @include desktop {
+      width: 40vw;
+      height: 50vh;
+      padding: 20px 5rem 5rem 5rem;
+      box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+  }
+}

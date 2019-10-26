@@ -1,0 +1,326 @@
+._new_group {
+  background: $primary;
+  padding: 20px;
+  color: $white;
+}
+._new_notice {
+  padding: 20px;
+  border: 1px black solid;
+}
+._stock {
+  width: 300px;
+  height: 125px;
+  cursor: pointer;
+  // overflow: hidden;
+  margin: 10px;
+  // border: solid 1px black;
+  box-shadow: 1.5px 1.5px 4px 1px $brown;
+  border-radius: 3px;
+  display: flex;
+
+  .left {
+    flex: 1;
+    border-right: 1px $brown solid;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    display: flex;
+  }
+  .right {
+    flex: 1.75;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    & > h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 5px;
+    }
+    & > h3 {
+      font-weight: 600;
+      margin: 5px;
+      font-size: 18px;
+    }
+    & > span {
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+    & > p {
+      margin: 5px; // font-size: 0.7rem;
+    }
+    flex-direction: column;
+    .btns {
+      display: flex;
+      flex: 1;
+      align-self: stretch;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+    // box-shadow: 0px 0px 0px 2px #000;
+  }
+  transition: all 0.25s ease;
+  &:hover {
+    transform: scale(1.025);
+  }
+  &.is-full-width {
+    width: 100%;
+    box-shadow: unset;
+    &:hover {
+      transform: unset;
+    }
+  }
+}
+
+._overlay {
+  visibility: hidden;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  transition: all 0.5s ease;
+  z-index: 10000;
+  opacity: 0;
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+._buy_bar {
+  position: absolute;
+  z-index: 10001;
+  top: 0;
+  right: 0;
+  width: 30vw;
+  height: 100vh;
+  background: #fff;
+  background: $beige-lighter;
+  transition: all 0.5s ease;
+  transform: translateX(100%);
+  &.show {
+    transform: translateX(0%);
+  }
+  .header {
+    display: flex;
+    background: $primary;
+    padding: 10px;
+    height: 52px;
+    color: #fff;
+    justify-content: flex-start;
+  }
+  .content {
+    padding: 15px;
+    overflow-y: scroll;
+  }
+}
+
+._sell_bar {
+  position: absolute;
+  z-index: 10001;
+  top: 0;
+  left: 0;
+  width: 30vw;
+  height: 100vh;
+  background: #fff;
+  background: $beige-lighter;
+  transition: all 0.5s ease;
+  transform: translateX(-100%);
+  &.show {
+    transform: translateX(0%);
+  }
+  .header {
+    display: flex;
+    background: $primary;
+    padding: 10px;
+    height: 52px;
+    color: #fff;
+    justify-content: flex-end;
+  }
+  .content {
+    padding: 15px;
+    overflow-y: scroll;
+    ._holdings {
+      color: $primary;
+      background: $primary;
+      color: #fff;
+      border-radius: 5px;
+      padding: 15px 25px;
+
+      text-align: center;
+    }
+  }
+}
+
+.holdings {
+  flex: 1 1;
+  border-right: solid 1px $beige-lighter;
+  padding: 20px;
+  max-height: 100%;
+  overflow-y: scroll;
+  .holding {
+    border: solid 1px $beige-lighter;
+    box-sizing: border-box;
+    margin-top: 10px;
+    box-shadow: 3px 3px 8px 0px $beige-light;
+    padding: 10px;
+    display: flex;
+    .left {
+      flex: 0.75;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .center {
+      flex: 3;
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      .left {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+      }
+      .right {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0px 20px;
+        align-items: center;
+        .value {
+          font-weight: 600;
+          font-size: 1.2rem;
+        }
+      }
+    }
+    .right {
+      .price {
+        box-shadow: 0px 0px 0px 1px $beige-light;
+        padding: 5px;
+        font-size: 0.8rem;
+        align-self: stretch;
+        text-align: center;
+        font-weight: 500;
+        border-radius: 4px;
+      }
+      flex-direction: column;
+      flex: 1.5;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+}
+
+.card {
+  margin: 10px;
+  height: 38%;
+  background-color: white;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  color: #4a4a4a;
+  max-width: 25%;
+  position: relative;
+}
+
+._transactions_bottom {
+  background: #fff;
+  width: 100vw;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 100001;
+  transition: all 0.5s ease;
+  transform: translateY(100%);
+  &.show {
+    transform: translateY(0%);
+  }
+
+  ._container {
+    overflow-y: scroll;
+    padding-top: 60px;
+    background: $white;
+    max-height: 100%;
+    ._transaction {
+      padding: 20px;
+      margin: 10px;
+      display: flex;
+      -webkit-box-shadow: 0px 11px 0px -10px $brown;
+      -moz-box-shadow: 0px 11px 0px -10px $brown;
+      box-shadow: 0px 11px 0px -10px $brown;
+      .left {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        max-width: 16.66666vw;
+        justify-content: center;
+      }
+      .right {
+        flex: 5;
+        position: relative;
+        & > p {
+          margin: 5px 0px;
+        }
+        .sell {
+          display: flex;
+          flex-direction: column;
+          button {
+            margin-top: 5px;
+            background: unset;
+            pointer-events: none;
+            border-color: $red;
+            color: $red;
+            width: 200px;
+            &.is-win {
+              color: $green !important;
+              border-color: $green !important;
+            }
+            &.is-lose {
+              color: $red !important;
+              border-color: $red !important;
+            }
+            &.is-draw {
+              color: $primary !important;
+              border-color: $primary !important;
+            }
+          }
+
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+        .buy {
+          display: flex;
+          flex-direction: column;
+          button {
+            margin-top: 5px;
+            background: unset;
+            pointer-events: none;
+            color: $green;
+            border-color: $green;
+            width: 200px;
+            &.is-win {
+              color: $green !important;
+              border-color: $green !important;
+            }
+            &.is-lose {
+              color: $red !important;
+              border-color: $red !important;
+            }
+            &.is-draw {
+              color: $primary !important;
+              border-color: $primary !important;
+            }
+          }
+
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+    }
+  }
+}
