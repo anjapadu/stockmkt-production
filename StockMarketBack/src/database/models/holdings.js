@@ -11,7 +11,7 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       primaryKey: true,
 
-    }, 
+    },
     quantity: {
       type: DataTypes.INTEGER
     }

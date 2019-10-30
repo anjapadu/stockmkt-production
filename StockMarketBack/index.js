@@ -238,7 +238,7 @@ app.get('/shot', (req, res) => {
 })
 
 const httpServer = http.createServer(app);
-httpServer.listen(process.env.APP_PORT, () => {
+httpServer.listen(5015, () => {
     console.log('HTTP Server running on 5010')
     cron.schedule('*/3 * * * *', async () => {
         console.log('Sending New Value');

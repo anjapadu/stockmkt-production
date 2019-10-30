@@ -7,7 +7,7 @@ const server = Server(app);
 
 const socket = io(server, { origins: '*:*' })
 
-server.listen(process.env.SOCKET_PORT, () => {
+server.listen(5020, () => {
   console.log('SOCKEET WORKING ON 5020')
 });
 
