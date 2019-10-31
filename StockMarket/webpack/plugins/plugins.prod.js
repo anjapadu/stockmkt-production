@@ -16,8 +16,8 @@ new MiniCssExtractPlugin({
 new WebpackBar(),
 new DefinePlugin({
     'IS_DEV': JSON.stringify("false"),
-    'API_URL': JSON.stringify("http://localhost:5015/graph"),
-    'SOCKET_URL': JSON.stringify("http://localhost:5020")
+    'API_URL': JSON.stringify("http://ictlab.usil.edu.pe/bolsa/api"),
+    'SOCKET_URL': JSON.stringify("http://ictlab.usil.edu.pe")
 }),
 new CompressionPlugin({
     // asset: '[path].gz[query]',

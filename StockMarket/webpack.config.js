@@ -17,9 +17,10 @@ module.exports = env => {
     },
 
     output: {
-      publicPath: '/',
+      publicPath: '/bolsa/',
       filename: env.production ? "[name].[contenthash].bundle.js" : "[name].bundle.js",
-      chunkFilename: env.production ? "[name].[contenthash].chunk.js" : "[name].chunk.js"
+      chunkFilename: env.production ? "[name].[contenthash].chunk.js" : "[name].chunk.js",
+      path:  __dirname + "/server/dist/public"
       //chunkFilename: "chunkhash].js"
     },
 

@@ -9,6 +9,12 @@ services:
       - "8085:8085"
     environment:
       PORT: 8085
+  router:
+    build:
+      context: .
+      dockerfile: ./router/Dockerfile
+    ports:
+      - "80:80"
   back:
     build:
       context: .

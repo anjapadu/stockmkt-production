@@ -16,7 +16,9 @@ const persistConfig = {
         'app'
     ]
 }
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({
+basename: '/bolsa/'
+});
 // const routerMwre = routerMiddleware(history);
 const sagaMiddleware = createSagaMiddleware();
 const persistedReducer = persistReducer(persistConfig, reducers(history))
