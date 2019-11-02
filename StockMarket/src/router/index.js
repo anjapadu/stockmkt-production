@@ -94,7 +94,7 @@ class RouterApp extends React.Component {
         })
 
         const socket = io.connect(SOCKET_URL, {
-	    path: '/bolsa/socket/socket.io',
+//	    path: '/bolsa/socket/socket.io',
             transports: ["websocket"],
             query: {
                 userUUID: this.props.userUUID

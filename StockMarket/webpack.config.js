@@ -1,5 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 let plugins;
+const TerserPlugin = require('terser-webpack-plugin');
+
 
 module.exports = env => {
   if (env.production) {
@@ -79,6 +81,17 @@ module.exports = env => {
       // hot: true
     },
     optimization: {
+minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+        },
+        extractComments: false,
+      }),
+    ],
       splitChunks: {
         cacheGroups: {
           commons: {

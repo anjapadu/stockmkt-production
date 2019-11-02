@@ -685,7 +685,7 @@ class Home extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.filter === '') {
+        if (props.filter === '' || !props.filter) {
             return {filtered_companies: props.stockList}
         } else {
             const filtered_companies = Object.values(props.stockList).filter((company) => {
@@ -778,6 +778,7 @@ class Home extends Component {
                     showBuy: false,
                 }, () => {
                     if (!data.data.buyOrSell) {
+this.sideBar.reset(true)
                         return store.addNotification({
                             title: "Error",
                             message: `Hubo un error en la compra`,
@@ -898,9 +899,10 @@ class Home extends Component {
                     showSell: false,
                 }, () => {
                     if (!data.data.buyOrSell) {
+this.leftSideBar.reset(true)
                         return store.addNotification({
                             title: "Error",
-                            message: `Ubo un error en la compra`,
+                            message: `Hubo un error en la compra`,
                             type: "danger",
                             insert: "top",
                             container: "top-right",
@@ -991,7 +993,7 @@ class Home extends Component {
     }
     getTotal = () => {
         let stockValue = Object.keys(this.props.holdings).reduce((prev, curr) => {
-            prev += this.state.filtered_companies[curr]["price"] * this.props.holdings[curr]
+            prev += this.props.stockList[curr]["price"] * this.props.holdings[curr]
             return prev
         }, 0).toFixed(2);
 
@@ -1004,6 +1006,7 @@ class Home extends Component {
     render() {
         {this._scroll()}
         const {filtered_companies} = this.state;
+        const { stockList } = this.props
         if (this.state.loading || !this.props.connected) {
             return <div className="pageloader is-active is-primary"><span className="title">Conectando...</span></div>
         }
@@ -1082,7 +1085,7 @@ class Home extends Component {
                                     className="is-primary is-outlined"
                                     text={
                                         <span>Valor de acciones: <b>{numberWithCommas(Object.keys(this.props.holdings).reduce((prev, curr) => {
-                                            prev += filtered_companies[curr]["price"] * this.props.holdings[curr]
+                                            prev += stockList[curr]["price"] * this.props.holdings[curr]
                                             return prev
                                         }, 0).toFixed(2))}</b> USD</span>}
                                 />
@@ -1118,10 +1121,10 @@ class Home extends Component {
                             style={{
                                 fontSize: '2rem'
                             }}
-                        >No haz realizado ninguna compra aún.</h1>
+                        >No has realizado ninguna compra aún.</h1>
                     </div> : Object.keys(this.props.holdings).map((stockUUID) => {
                         const quantity = this.props.holdings[stockUUID]
-                        const stockObj = filtered_companies[stockUUID]
+                        const stockObj = stockList[stockUUID]
                         const stockPrice = stockObj["price"]
                         const changePercent = stockObj["changePercent"]
                         const currency = stockObj["currency"]
@@ -1254,7 +1257,7 @@ class Home extends Component {
                 })}
                 show={this.state.showSell}
                 stockToSell={this.state.stockToSell}
-                stockList={filtered_companies}
+                stockList={stockList}
                 onSubmitSell={this.onSubmitSell}
                 comission={this.props.comission}
                 exchangeRate={this.props.exchangeRate}
@@ -1271,14 +1274,14 @@ class Home extends Component {
                 })}
                 show={this.state.showBuy}
                 stockToBuy={this.state.stockToBuy}
-                stockList={filtered_companies}
+                stockList={stockList}
                 onSubmitBuy={this.onSubmitBuy}
                 comission={this.props.comission}
                 addTransacction={this.props.addTransacction}
                 exchangeRate={this.props.exchangeRate}
             />
             <Transactions
-                stockList={filtered_companies}
+                stockList={stockList}
                 transactions={this.props.transactions}
                 showTransactions={this.state.showTransactions}
                 onClose={() => this.setState({showTransactions: false})}

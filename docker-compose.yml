@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3"
 
 services:
   front:
@@ -15,31 +15,31 @@ services:
       dockerfile: ./router/Dockerfile
     ports:
       - "80:80"
-  back:
-    build:
-      context: .
-      dockerfile: ./StockMarketBack/Dockerfile
-    ports:
-      - "5015:5015"
-      - "5020:5020"
-    environment:
-      DB_USER: root
-      DB_PASS: 08ewd2laasdj1d13rDagW
-      DB_NAME: stockmkt
-      DB_HOST: db_stockmkt
-      DB_PORT: 5432
-      APP_PORT: 5015
-      SOCKET_PORT: 5020
-    depends_on:
-      - db_stockmkt
-  db_stockmkt:
-    build:
-      context: .
-      dockerfile: ./StockMarketBack/db.Dockerfile
-    ports:
-      - "5430:5432"
-    restart: always
-    environment:
-      POSTGRES_DB: stockmkt
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: 08ewd2laasdj1d13rDagW
+#  back:
+#    build:
+#      context: .
+#      dockerfile: ./StockMarketBack/Dockerfile
+#    ports:
+#      - "5015:5015"
+#      - "5020:5020"
+#    environment:
+#      DB_USER: root
+#      DB_PASS: 08ewd2laasdj1d13rDagW
+#      DB_NAME: stockmkt
+#      DB_HOST: db_stockmkt
+#      DB_PORT: 5432
+#      APP_PORT: 5015
+#      SOCKET_PORT: 5020
+#    depends_on:
+#      - db_stockmkt
+#  db_stockmkt:
+#    build:
+#      context: .
+#      dockerfile: ./StockMarketBack/db.Dockerfile
+#    ports:
+#      - "5430:5432"
+#    restart: always
+#    environment:
+#      POSTGRES_DB: stockmkt
+#      POSTGRES_USER: root
+#      POSTGRES_PASSWORD: 08ewd2laasdj1d13rDagW
