@@ -16,10 +16,10 @@ new MiniCssExtractPlugin({
 new WebpackBar(),
 new DefinePlugin({
     'IS_DEV': JSON.stringify("false"),
-'API_URL': JSON.stringify("http://ictlab.usil.edu.pe/bolsa/api"),
-'SOCKET_URL': JSON.stringify("http://ictlab.usil.edu.pe/bolsa/socket")
-//    'API_URL': JSON.stringify("http://54.245.43.104:5015/graph"),
- //   'SOCKET_URL': JSON.stringify("http://54.245.43.104:5020")
+    // 'API_URL': JSON.stringify("http://ictlab.usil.edu.pe/bolsa/api"),
+    // 'SOCKET_URL': JSON.stringify("http://ictlab.usil.edu.pe/bolsa/socket")
+    'API_URL': JSON.stringify("http://54.245.43.104:5015/graph"),
+    'SOCKET_URL': JSON.stringify("http://54.245.43.104:5020")
 }),
 new CompressionPlugin({
     // asset: '[path].gz[query]',

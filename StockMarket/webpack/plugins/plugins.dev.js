@@ -8,8 +8,10 @@ module.exports = [
     new WebpackBar(),
     new DefinePlugin({
         'IS_DEV': JSON.stringify("true"),
-        'API_URL': JSON.stringify("http://stockmkt.back.ngrok.io/graph"),
-        'SOCKET_URL': JSON.stringify("http://stockmkt.socket.ngrok.io")
+        // 'API_URL': JSON.stringify("http://ictlab.usil.edu.pe/bolsa/api"),
+        // 'SOCKET_URL': JSON.stringify("http://ictlab.usil.edu.pe/bolsa/socket")
+        'API_URL': JSON.stringify("http://54.245.43.104:5015/graph"),
+        'SOCKET_URL': JSON.stringify("http://54.245.43.104:5020")
     }),
     // new BundleAnalyzerPlugin(),
     new HtmlWebPackPlugin({
