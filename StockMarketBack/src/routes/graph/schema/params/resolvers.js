@@ -20,6 +20,11 @@ export const resetGame = async () => {
   io.emit('reset.game', {
     reset: true
   })
+  io.emit('param.change', {
+    name: 'status',
+    value: 'UNSTARTED'
+  })
+  global.status = 'UNSTARTED';
   return { success: true }
 }
 export const updateComission = async (_, { comission }) => {
