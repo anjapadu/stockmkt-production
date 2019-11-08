@@ -1,5 +1,5 @@
 import models from '@models';
-import { generatePassword } from '../../../../lib/utils';
+import { io } from '../../../../lib/socket';
 // var bcrypt = require('bcrypt');
 import moment from 'moment';
 import { encode } from '../../../../lib/crypt';
@@ -85,12 +85,17 @@ export async function destroyUser(_, { uuid }) {
             user_uuid: uuid
         }
     })
-    
+
     await models.users.destroy({
         where: {
             uuid
         }
     })
+    if (io.sockets.adapter.rooms[`user-${uuid}`]) {
+        io.to(`user-${uuid}`).emit('delete.user', {
+            delete: true
+        })
+    }
     return true
 }
 

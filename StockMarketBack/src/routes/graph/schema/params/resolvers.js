@@ -17,6 +17,9 @@ export const resetGame = async () => {
   FROM future_values GROUP by stock_uuid ) as tmp;
   update future_values SET sent = false;
   `,)
+  io.emit('reset.game', {
+    reset: true
+  })
   return { success: true }
 }
 export const updateComission = async (_, { comission }) => {
