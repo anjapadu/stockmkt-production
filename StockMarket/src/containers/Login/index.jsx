@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import {
     logInUser
 } from '../../actions'
@@ -18,10 +18,10 @@ class Login extends React.Component {
             user: '',
             pass: '',
             modalState: false,
-           /* errorGroupName: undefined,
-            errorGroupPassword: undefined,
-            newGroupName: '',
-            newGroupPassword: ''*/
+            /* errorGroupName: undefined,
+             errorGroupPassword: undefined,
+             newGroupName: '',
+             newGroupPassword: ''*/
         }
         /*this.toggleModal = this.toggleModal.bind(this);*/
         this.onClick = this.onClick.bind(this);
@@ -38,9 +38,9 @@ class Login extends React.Component {
     }*/
 
     async onClick(e) {
-        this.setState({errorPass: undefined, errorUser: undefined})
+        this.setState({ errorPass: undefined, errorUser: undefined })
         e.preventDefault()
-        const {user, pass} = this.state
+        const { user, pass } = this.state
         if (user === '') {
             return this.setState({
                 errorUser: 'Debes ingresar usuario',
@@ -52,7 +52,7 @@ class Login extends React.Component {
             })
         }
 
-        const {data} = await axios.post(API_URL, {
+        const { data } = await axios.post(API_URL, {
             query: `{
         login(username: "${user}", password: "${pass}") {
           uuid
@@ -86,45 +86,45 @@ class Login extends React.Component {
         })
     }
 
-   /* onRegister = async () => {
-        const {newGroupName, newGroupPassword} = this.state;
-        const that = this;
-        this.setState({errorGroupName: undefined, errorGroupPassword: undefined});
-
-        if (newGroupName.length <= 0) {
-            return this.setState({
-                errorGroupName: 'Debes registrar un nombre',
-            })
-        }
-        if (newGroupPassword.length <= 0) {
-            return this.setState({
-                errorGroupPassword: 'Debes registrar una contraseña'
-            })
-        }
-        await axios.post(API_URL, {
-            query: `mutation{
-                        createUser(username: "${newGroupName}" password: "${newGroupPassword}") {
-                            username
-                            uuid
-                        }
-                    }`
-        })
-            .then(rep => {
-                if(rep.status === 200){
-                    if (rep.data.errors) {
-                        const key = 'errorGroupName';
-                        const err = 'El nombre ingresado ya existe';
-                        return this.setState({
-                            [key]: err
-                        })
-                    } else {
-                        this.toggleModal();
-                        that.setState({ newGroupName: '', newGroupPassword: '' });
-                    }
-                }
-            })
-            .catch(er => console.log('this is the err, ', er));
-    }*/
+    /* onRegister = async () => {
+         const {newGroupName, newGroupPassword} = this.state;
+         const that = this;
+         this.setState({errorGroupName: undefined, errorGroupPassword: undefined});
+ 
+         if (newGroupName.length <= 0) {
+             return this.setState({
+                 errorGroupName: 'Debes registrar un nombre',
+             })
+         }
+         if (newGroupPassword.length <= 0) {
+             return this.setState({
+                 errorGroupPassword: 'Debes registrar una contraseña'
+             })
+         }
+         await axios.post(API_URL, {
+             query: `mutation{
+                         createUser(username: "${newGroupName}" password: "${newGroupPassword}") {
+                             username
+                             uuid
+                         }
+                     }`
+         })
+             .then(rep => {
+                 if(rep.status === 200){
+                     if (rep.data.errors) {
+                         const key = 'errorGroupName';
+                         const err = 'El nombre ingresado ya existe';
+                         return this.setState({
+                             [key]: err
+                         })
+                     } else {
+                         this.toggleModal();
+                         that.setState({ newGroupName: '', newGroupPassword: '' });
+                     }
+                 }
+             })
+             .catch(er => console.log('this is the err, ', er));
+     }*/
 
     render() {
         const {
@@ -132,10 +132,10 @@ class Login extends React.Component {
             errorPass,
             user,
             pass
-/*            errorGroupName,
-            errorGroupPassword,
-            newGroupName,
-            newGroupPassword*/
+            /*            errorGroupName,
+                        errorGroupPassword,
+                        newGroupName,
+                        newGroupPassword*/
         } = this.state;
         return (
             <div
@@ -179,7 +179,7 @@ class Login extends React.Component {
                             isFluid
                         />
                     </div>
-                  {/*  <a
+                    {/*  <a
                         onClick={this.toggleModal}
                         style={{display: 'flex', alignSelf: 'flex-end' }}
                     >Registrarse</a>*/}
@@ -230,6 +230,21 @@ class Login extends React.Component {
                     </figure>
                     <figure className="image">
                         <img src={finanzas} style={{ height: 70, width: 300 }} />
+                    </figure>
+                </div>
+                <div style={{
+                    position: 'absolute',
+                    top: 25,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    width: '95%'
+                }}>
+                    <figure className="image">
+                        <img src={finanzas} style={{ height: 70, width: 300 }} />
+                    </figure>
+                    <figure className="image">
+                        <img src={carrera} style={{ height: 70, width: 300 }} />
                     </figure>
                 </div>
             </div>

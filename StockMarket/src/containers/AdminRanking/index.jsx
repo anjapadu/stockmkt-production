@@ -51,7 +51,7 @@ class AdminRanking extends Component {
           username
           admin
           balance
-          
+
           holdings{
           stock_uuid
           user_uuid
@@ -72,7 +72,7 @@ class AdminRanking extends Component {
               change_price
               change_percent
             }
-          } 
+          }
           }
         }
       }
@@ -82,7 +82,55 @@ class AdminRanking extends Component {
       this.props.setStocks(data.data.stocks)
       this.props.setRanking(data.data.users)
     }
+    this.timer = setInterval(() => {
+      this.reloadRanking()
+    }, 10000)
   }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+
+  async reloadRanking() {
+    const { data } = await Axios.post(API_URL, {
+      query: `{
+        users {
+          uuid
+          username
+          admin
+          balance
+
+          holdings{
+          stock_uuid
+          user_uuid
+          quantity
+          user {
+            uuid
+            uuid
+          }
+          stock {
+            uuid
+            name
+            description
+            companyname
+            quantity
+            currency
+            last_price {
+              close_price
+              change_price
+              change_percent
+            }
+          }
+          }
+        }
+      }
+      `
+    })
+    if (!data.errors) {
+      this.props.setRanking(data.data.users)
+    }
+  }
+
   calculateTotalHoldings(holdings) {
     return holdings.reduce((prev, curr) => {
       if (this.props.stockList[curr["stock_uuid"]].currency === 'USD') {
@@ -147,7 +195,7 @@ class AdminRanking extends Component {
               </article>
             </div>
 
-          {/*  <div
+            {/*  <div
               className="right"
             >
               <div
@@ -170,7 +218,7 @@ class AdminRanking extends Component {
                 >
                    <table>
                 <thead>
-                
+
                 </thead>
               </table>
                   <Button

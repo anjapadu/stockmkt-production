@@ -10,7 +10,9 @@ const saltRounds = 10;
 export async function fetchUsers(_parent, data, _, __) {
     try {
         return await models.users.findAll({
-
+            where: {
+                admin: false
+            }
         });
     } catch (e) {
         console.log(e);

@@ -175,7 +175,7 @@ class LeftSideBar extends Component {
     }
 
     componentDidMount() {
-        console.log('MOUNTED')
+        // console.log('MOUNTED')
     }
 
     changeState(newState) {
@@ -974,7 +974,7 @@ class Home extends Component {
     renderNews() {
         const toRender = []
         Object.keys(this.props.news).map((newKey, index) => {
-            console.log('hey this is the index, ', index)
+            // console.log('hey this is the index, ', index)
             toRender.push(<div key={newKey} className={`message-header notification is-link ${(index === 0) ? 'newNews' : null}`} style={{
                 marginTop: '1%',
                 marginBottom: '1%',
@@ -1002,7 +1002,7 @@ class Home extends Component {
 
         const total = parseFloat(stockValue) + parseFloat(this.props.balance);
 
-        return numberWithCommas(total);
+        return numberWithCommas(total.toFixed(2));
     }
 
 
