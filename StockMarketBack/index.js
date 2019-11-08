@@ -155,7 +155,7 @@ async function fetchAndUpdateFutureValues(isShot = false) {
             newText: newValue.new_text,
             stock_uuid: newValue.stock_uuid,
             close_price: newValue['new_price'].toFixed(2),
-            timestamp: moment().format('YYYY-MM-DD HH:mm:ss'),
+            timestamp: moment().subtract(5, 'hours').format('YYYY-MM-DD HH:mm:ss'),
             change_price: changePrice.toFixed(2),
             change_percent: changePercent.toFixed(2)
         }
@@ -168,7 +168,7 @@ async function fetchAndUpdateFutureValues(isShot = false) {
     }))
     io.emit('new.new', {
         news,
-        time: moment().format('DD/MM/YYYY_HH:mm:ss')
+        time: moment().subtract(5, 'hours').format('DD/MM/YYYY_HH:mm:ss')
     })
     setTimeout(async () => {
         const newPricesToSendLater = await models.stock_price.bulkCreate(valuesWithNews, { returning: true })
