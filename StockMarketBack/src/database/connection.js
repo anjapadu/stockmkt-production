@@ -2,11 +2,11 @@ import { Sequelize } from 'sequelize';
 require('dotenv').config();
 
 const databaseConfig = {
-    "username": process.env.DB_USER,
-    "password": process.env.DB_PASS,
-    "database": process.env.DB_NAME,
-    "host": process.env.DB_HOST,
-    "port": process.env.DB_PORT,
+    "username": 'anjapadu' || process.env.DB_USER,
+    "password":'ferret2573' ||  process.env.DB_PASS,
+    "database": 'stockmkt' ||  process.env.DB_NAME,
+    "host":'usilstockmkt.cj4nuesfxys9.us-west-2.rds.amazonaws.com' || process.env.DB_HOST,
+    "port": '5432' || process.env.DB_PORT,
     "dialect": "postgres"
 }
 console.log({ databaseConfig });
