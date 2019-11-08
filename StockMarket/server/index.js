@@ -4,7 +4,11 @@ const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path")
-const gzipStatic = require('connect-gzip-static');
+//var expressStaticGzip = require("express-static-gzip");
+//var gzipStatic = require('connect-gzip-static');
+
+//connect()
+
 const app = express();
 app.disable('x-powered-by');
 // app.enable('trust proxy')
@@ -29,9 +33,17 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 
 router.use(express.static('public'));
-//router.use(gzipStatic(path.join(__dirname, 'public')));
+
+app.get('*.js',function(req, res, next) {
+req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  res.set('Content-Type', 'text/javascript');
+  next();
+})
+
+
 router.use(function(req, res, next) {
-  res.sendFile(path.resolve(__dirname, './public', 'index.html'))
+  res.sendFile(path.resolve(__dirname, './public','index.html'))
 });
 
 app.use('/bolsa', router);
