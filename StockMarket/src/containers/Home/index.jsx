@@ -996,7 +996,12 @@ class Home extends Component {
     }
     getTotal = () => {
         let stockValue = Object.keys(this.props.holdings).reduce((prev, curr) => {
-            prev += this.props.stockList[curr]["price"] * this.props.holdings[curr]
+            // console.log()
+            if (this.props.stockList[curr].currency === 'USD') {
+                prev += this.props.stockList[curr]["price"] * this.props.holdings[curr]
+            } else {
+                prev += (this.props.stockList[curr]["price"] / 3.35) * this.props.holdings[curr]
+            }
             return prev
         }, 0).toFixed(2);
 
