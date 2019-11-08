@@ -125,7 +125,7 @@ class RouterApp extends React.Component {
             this.props.updateBalance(parseFloat(data.toFixed(2)))
         })
         socket.on('reset.game', (data) => {
-            if (data.reset) {
+            if (data.reset && !this.props.admin) {
                 this.props.logOff()
             }
         })
