@@ -46,7 +46,7 @@ router.use(function(req, res, next) {
   res.sendFile(path.resolve(__dirname, './public','index.html'))
 });
 
-app.use('/bolsa', router);
+app.use('*', router);
 /*
 app.use('/bolsa', express.static(__dirname+'/public'));
 //app.use(gzipStatic(path.join(__dirname, './public')));
